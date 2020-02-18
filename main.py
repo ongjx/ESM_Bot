@@ -35,6 +35,7 @@ def ping_system(context):
             except:
                 pass
     else:
+        pass
         # bot.send_message(chat_id=group_chat_id, text="CAT SYSTEM is Up.")
 
     url = 'https://18.140.255.180'
@@ -51,6 +52,7 @@ def ping_system(context):
             except:
                 pass
     else:
+        pass
         # bot.send_message(chat_id=group_chat_id, text="Ticketing System is up.")
 
 
@@ -68,6 +70,7 @@ def ping_system(context):
             except:
                 pass
     else:
+        pass
         # bot.send_message(chat_id=group_chat_id, text="ESMOS Heartbeat is Alive.")
 
 
