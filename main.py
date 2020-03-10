@@ -4,8 +4,9 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Job
 import requests
 from datetime import datetime
 from time import sleep
+import os
 
-api_key = '1061617283:AAFbmA0WAauyBHjhJn4E_g798eqCBBn2eXo'
+api_key = os.environ['API_KEY']
 group_chat_id = "-1001436792879"
 
 bot = telegram.Bot(token=api_key)
