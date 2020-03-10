@@ -29,14 +29,15 @@ def ping_system(context):
         bot.send_message(chat_id=group_chat_id, text=cat_template)
         global failure_count_cat
         failure_count_cat += 1
-        if failure_count_cat == 5:
+        if failure_count_cat == 10:
             try:
                 context.job.schedule_removal()
             except:
                 pass
     else:
-        pass
-        # bot.send_message(chat_id=group_chat_id, text="CAT SYSTEM is Up.")
+        if failure_count_cat != 0:
+            failure_count_cat = 0
+            bot.send_message(chat_id=group_chat_id, text="CAT SYSTEM is Up.")
 
     url = 'https://18.140.255.180'
     status = requests.get(url, verify=False)
@@ -46,14 +47,15 @@ def ping_system(context):
         bot.send_message(chat_id=group_chat_id, text=esmos_template)
         global failure_count_ticket
         failure_count_ticket += 1
-        if failure_count_ticket == 5:
+        if failure_count_ticket == 10:
             try:
                 context.job.schedule_removal()
             except:
                 pass
     else:
-        pass
-        # bot.send_message(chat_id=group_chat_id, text="Ticketing System is up.")
+        if failure_count_ticket != 0:
+            failure_count_ticket = 0
+            bot.send_message(chat_id=group_chat_id, text="Ticketing System is up.")
 
 
     url = 'http://18.140.255.180:8001/testpoint'
@@ -64,21 +66,20 @@ def ping_system(context):
         bot.send_message(chat_id=group_chat_id, text=heartbeat_template)
         global failure_count_health
         failure_count_health += 1
-        if failure_count_health == 5:
+        if failure_count_health == 10:
             try:
                 context.job.schedule_removal()
             except:
                 pass
     else:
-        pass
-        # bot.send_message(chat_id=group_chat_id, text="ESMOS Heartbeat is Alive.")
-
-
-
+        if failure_count_health != 0:
+            failure_count_health = 0
+            bot.send_message(chat_id=group_chat_id, text="ESMOS Heartbeat is Alive.")
+    
 if __name__ == "__main__": 
     updater = Updater(api_key,use_context=True)
     dispatcher = updater.dispatcher
     job = updater.job_queue
-    job_min = job.run_repeating(ping_system,interval=60)
+    job_min = job.run_repeating(ping_system,interval=30)
     updater.start_polling()
     updater.idle()
